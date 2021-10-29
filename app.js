@@ -46,7 +46,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 var mongoose= require('mongoose');
-var mongoDB= 'mongodb+srv://vietbk02:vietbk02@cluster0.8yaqq.mongodb.net/local_library?retryWrites=true&w=majority';
+var dev_db= 'mongodb+srv://vietbk02:vietbk02@cluster0.8yaqq.mongodb.net/local_library?retryWrites=true&w=majority';
+var mongoDB= process.env.MONGODB_URI || dev_db
 mongoose.connect(mongoDB, {useNewUrlParser: true,useUnifiedTopology: true});
 var db= mongoose.connection;
 db.on('error', console.error.bind(console, 'mongodb connection error'));
